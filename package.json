@@ -4,16 +4,20 @@
   "homepage": "https://rajasekar-arch.github.io/complete-sql-query-builder",
   "scripts": {
     "dev": "next dev",
+    "clean": "rimraf .next out",
     "start": "next start",
     "lint": "next lint",
     "build": "next build",
-    "deploy": "next build && gh-pages -d out"
+    "deploy": "next build && gh-pages -d out",
+    "clean-deploy": "npm run clean && npm run deploy",
+
   },
   "dependencies": {
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "reactflow": "^11.11.4"
+    "reactflow": "^11.11.4",
+    "sass": "^1.86.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -26,6 +30,7 @@
     "eslint-config-next": "15.3.5",
     "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^4.1.11",
     "typescript": "^5"
   }
