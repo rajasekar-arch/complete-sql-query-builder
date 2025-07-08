@@ -12,12 +12,12 @@ export function parseSql(sql: string): ParsedTable[] {
 
   let match;
   while ((match = createTableRegex.exec(sql)) !== null) {
-    const [_, tableName, body] = match;
+    const [tableName, body] = match;
     const lines = body.split(',').map(line => line.trim());
 
     const columns: ParsedTable['columns'] = [];
 
-    for (let line of lines) {
+    for (const line of lines) {
       if (line.toUpperCase().startsWith('PRIMARY KEY')) {
         const pkMatch = pkRegex.exec(line);
         if (pkMatch) {

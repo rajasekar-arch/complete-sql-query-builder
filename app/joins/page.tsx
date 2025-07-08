@@ -3,19 +3,29 @@
 import { useState } from 'react';
 import CopyDownload from './../../components/copyDownload';
 
+// Define join type
+interface JoinClause {
+  type: 'INNER JOIN' | 'LEFT JOIN' | 'RIGHT JOIN' | 'FULL JOIN';
+  table: string;
+  on: string;
+}
+
 export default function JoinsBuilder() {
   const [mainTable, setMainTable] = useState('');
-  const [columns, setColumns] = useState(['*']);
-  const [joins, setJoins] = useState([{ type: 'INNER JOIN', table: '', on: '' }]);
+  const [columns, setColumns] = useState<string[]>(['*']);
+  const [joins, setJoins] = useState<JoinClause[]>([
+    { type: 'INNER JOIN', table: '', on: '' }
+  ]);
   const [where, setWhere] = useState('');
 
   const addJoin = () => {
     setJoins([...joins, { type: 'INNER JOIN', table: '', on: '' }]);
   };
 
-  const updateJoin = (i: number, key: string, value: string) => {
+  // ✅ Type-safe join updater
+  const updateJoin = <K extends keyof JoinClause>(i: number, key: K, value: JoinClause[K]) => {
     const updated = [...joins];
-    updated[i][key] = value;
+    updated[i] = { ...updated[i], [key]: value };
     setJoins(updated);
   };
 
@@ -27,7 +37,7 @@ export default function JoinsBuilder() {
       .map(j => `${j.type} ${j.table} ON ${j.on}`)
       .join('\n');
 
-    const columnList = columns.join(', ') || '*';
+    const columnList = columns.filter(Boolean).join(', ') || '*';
     const whereClause = where ? `\nWHERE ${where}` : '';
 
     return `SELECT ${columnList}\nFROM ${mainTable}\n${joinClause}${whereClause};`;
@@ -57,7 +67,7 @@ export default function JoinsBuilder() {
           <select
             className="p-2 border"
             value={j.type}
-            onChange={e => updateJoin(i, 'type', e.target.value)}
+            onChange={e => updateJoin(i, 'type', e.target.value as JoinClause['type'])}
           >
             <option value="INNER JOIN">INNER JOIN</option>
             <option value="LEFT JOIN">LEFT JOIN</option>
@@ -78,7 +88,12 @@ export default function JoinsBuilder() {
           />
         </div>
       ))}
-      <button onClick={addJoin} className="bg-blue-500 text-white px-4 py-2 rounded">+ Add Join</button>
+      <button
+        onClick={addJoin}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        + Add Join
+      </button>
 
       <input
         className="border p-2 w-full mt-4"
@@ -88,7 +103,9 @@ export default function JoinsBuilder() {
       />
 
       <h2 className="text-lg font-semibold mt-6">Generated SQL</h2>
-      <pre className="bg-gray-100 p-4 rounded border whitespace-pre-wrap">{generateSQL()}</pre>
+      <pre className="bg-gray-100 p-4 rounded border whitespace-pre-wrap">
+        {generateSQL()}
+      </pre>
 
       <CopyDownload sql={generateSQL()} />
     </div>

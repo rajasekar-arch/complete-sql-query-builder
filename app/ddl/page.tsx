@@ -3,43 +3,50 @@
 import { useState } from 'react';
 import CopyDownload from './../../components/copyDownload';
 
+// Define the expected shape for a column field
+interface Field {
+  name: string;
+  type: string;
+}
+
 export default function DDLBuilder() {
-  const [ddlType, setDdlType] = useState('CREATE');
+  const [ddlType, setDdlType] = useState<'CREATE' | 'ALTER' | 'DROP'>('CREATE');
   const [tableName, setTableName] = useState('');
-  const [columns, setColumns] = useState([{ name: '', type: 'VARCHAR(255)' }]);
+  const [columns, setColumns] = useState<Field[]>([]);
 
-  const addColumn = () => setColumns([...columns, { name: '', type: 'VARCHAR(255)' }]);
+  const addColumn = () => {
+    setColumns([...columns, { name: '', type: 'VARCHAR(255)' }]);
+  };
 
-  const updateColumn = (index: number, key: string, value: string) => {
+  const updateColumn = <K extends keyof Field>(index: number, key: K, value: Field[K]) => {
     const updated = [...columns];
-    updated[index][key] = value;
+    updated[index] = { ...updated[index], [key]: value };
     setColumns(updated);
   };
 
   const generateDDL = () => {
-    if (!tableName) return '-- Enter table name';
+    if (!tableName.trim()) return '-- Please enter a table name.';
 
     if (ddlType === 'DROP') {
       return `DROP TABLE ${tableName};`;
     }
 
-    const colDefs = columns
-      .filter(col => col.name)
-      .map(col => `${col.name} ${col.type}`)
-      .join(',\n  ');
+    const validColumns = columns.filter(col => col.name.trim());
+
+    if (validColumns.length === 0) return '-- Please add at least one valid column.';
 
     if (ddlType === 'CREATE') {
-      return `CREATE TABLE ${tableName} (\n  ${colDefs}\n);`;
+      const columnDefs = validColumns.map(col => `${col.name} ${col.type}`).join(',\n  ');
+      return `CREATE TABLE ${tableName} (\n  ${columnDefs}\n);`;
     }
 
     if (ddlType === 'ALTER') {
-      return columns
-        .filter(col => col.name)
+      return validColumns
         .map(col => `ALTER TABLE ${tableName} ADD COLUMN ${col.name} ${col.type};`)
         .join('\n');
     }
 
-    return '-- Invalid DDL type';
+    return '-- Invalid DDL type selected.';
   };
 
   return (
@@ -47,7 +54,11 @@ export default function DDLBuilder() {
       <h1 className="text-2xl font-bold mb-4">🧱 DDL Builder (CREATE / ALTER / DROP)</h1>
 
       <div className="mb-4 space-x-4">
-        <select value={ddlType} onChange={e => setDdlType(e.target.value)} className="p-2 border">
+        <select
+          value={ddlType}
+          onChange={e => setDdlType(e.target.value as 'CREATE' | 'ALTER' | 'DROP')}
+          className="p-2 border"
+        >
           <option value="CREATE">CREATE TABLE</option>
           <option value="ALTER">ALTER TABLE</option>
           <option value="DROP">DROP TABLE</option>
@@ -62,7 +73,7 @@ export default function DDLBuilder() {
         />
       </div>
 
-      {(ddlType !== 'DROP') &&
+      {ddlType !== 'DROP' && (
         <div className="space-y-2 mb-4">
           {columns.map((col, i) => (
             <div key={i} className="flex gap-2">
@@ -85,12 +96,20 @@ export default function DDLBuilder() {
               </select>
             </div>
           ))}
-          <button onClick={addColumn} className="bg-blue-500 text-white px-4 py-2 rounded">+ Add Column</button>
+
+          <button
+            onClick={addColumn}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            + Add Column
+          </button>
         </div>
-      }
+      )}
 
       <h2 className="text-lg font-semibold mt-6">Generated SQL</h2>
-      <pre className="bg-gray-100 p-4 rounded border whitespace-pre-wrap">{generateDDL()}</pre>
+      <pre className="bg-gray-100 p-4 rounded border whitespace-pre-wrap">
+        {generateDDL()}
+      </pre>
 
       <CopyDownload sql={generateDDL()} />
     </div>
