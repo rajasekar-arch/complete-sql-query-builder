@@ -13,6 +13,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <base href="/complete-sql-query-builder/" />
+      </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen">
         <Header />
         <main className="max-w-5xl mx-auto p-6">{children}</main>
