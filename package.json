@@ -4,12 +4,10 @@
   "homepage": "https://rajasekar-arch.github.io/complete-sql-query-builder",
   "scripts": {
     "dev": "next dev",
-    "clean": "rimraf .next out",
     "start": "next start",
     "lint": "next lint",
     "build": "next build",
-    "deploy": "next build && gh-pages -d out",
-    "clean-deploy": "npm run clean && npm run deploy"
+    "deploy": "next build && gh-pages -d out"
   },
   "dependencies": {
     "next": "15.3.5",
