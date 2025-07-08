@@ -14,7 +14,7 @@ export default function Home() {
         <li><Link href="/functions" className="block p-4 bg-gray-100 hover:bg-gray-200 rounded">📊 Functions (Agg/String/Date)</Link></li>
         <li><Link href="/dcl-tcl" className="block p-4 bg-gray-100 hover:bg-gray-200 rounded">🔐 DCL / TCL (GRANT, COMMIT...)</Link></li>
         <li><Link href="/schema-visualizer" className="block p-4 bg-gray-100 hover:bg-gray-200 rounded">Schema visualizer</Link></li>
-
+        <li><Link href="/cte" className="block p-4 bg-gray-100 hover:bg-gray-200 rounded">CTE (Common table Expressions)</Link></li>
       </ul>
     </div>
   );

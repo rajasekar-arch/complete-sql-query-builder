@@ -1,29 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-
 # **Complete SQL Query Builder**
 
 This project provides a comprehensive and user-friendly web interface for generating various types of SQL queries. Designed to simplify the process of constructing SQL statements, it covers Data Definition Language (DDL), Data Manipulation Language (DML), Transaction Control Language (TCL), and Data Control Language (DCL) operations. Additionally, it integrates a powerful language model to assist in generating complex or custom SQL queries from natural language descriptions.
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## **Features**
 
@@ -73,5 +50,4 @@ To run locally, you would typically:
 * **Query History:** Store and retrieve previously generated queries.  
 * **Schema Integration:** Potentially allow users to define a simple schema to provide more intelligent suggestions and validation.  
 * **Backend Integration:** For a production-ready tool, integrate with a backend service to execute queries against a real database (with appropriate security measures).
-
 

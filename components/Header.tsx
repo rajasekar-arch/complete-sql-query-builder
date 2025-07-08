@@ -14,6 +14,8 @@ export default function Header() {
           <Link href="/subqueries" className="hover:underline">🔍 Subqueries</Link>
           <Link href="/functions" className="hover:underline">📊 Functions</Link>
           <Link href="/dcl-tcl" className="hover:underline">🔐 DCL/TCL</Link>
+          <Link href="/schema-visualizer" className="hover:underline">Schema visualizer</Link>
+          <Link href="/cte" className="hover:underline">CTE</Link>
         </nav>
       </div>
     </header>
