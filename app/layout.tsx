@@ -1,6 +1,5 @@
 import "./globals.css";
 import Header from "../components/Header";
-import Script from "next/script";
 
 export const metadata = {
   title: "SQL Builder",
