@@ -19,14 +19,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        {/* Use Next.js Script component for loading external scripts */}
-        <Script
-          src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"
-          strategy="afterInteractive"
-        />
-      </head>
       <body className="bg-gray-50 text-gray-900 min-h-screen">
         <Header />
         <main className="max-w-5xl mx-auto p-6">{children}</main>
