@@ -9,8 +9,7 @@
     "lint": "next lint",
     "build": "next build",
     "deploy": "next build && gh-pages -d out",
-    "clean-deploy": "npm run clean && npm run deploy",
-
+    "clean-deploy": "npm run clean && npm run deploy"
   },
   "dependencies": {
     "next": "15.3.5",
