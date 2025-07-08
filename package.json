@@ -2,7 +2,7 @@
   "name": "complete-sql-query-builder",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rajasekar-arch.github.io/complete-sql-query-builder/",
+  "homepage": "https://rajasekar-arch.github.io/complete-sql-query-builder",
   "scripts": {
     "dev": "next dev",
     "start": "next start",
