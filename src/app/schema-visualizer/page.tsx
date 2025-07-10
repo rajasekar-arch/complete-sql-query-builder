@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import SchemaVisualizer from './../../components/SchemaVisualizer';
-import { parseSql } from './../../components/SqlParser';
+import SchemaVisualizer from './../../../components/SchemaVisualizer';
+import { parseSql } from './../../../components/SqlParser';
 import { Node, Edge } from 'reactflow';
 
 export default function SchemaPage() {
