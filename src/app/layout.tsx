@@ -1,11 +1,10 @@
 import "./globals.css";
-import Header from "../components/Header";
+import Header from "./../../components/Header";
 
 export const metadata = {
   title: "SQL Builder",
   description:
     "Build SQL queries interactively for DDL, DML, Joins, Functions, and more.",
-  // Set base for proper paths (optional if assetPrefix works)
   metadataBase: new URL(
     "https://rajasekar-arch.github.io/complete-sql-query-builder/"
   ),

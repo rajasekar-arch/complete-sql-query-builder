@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import CopyDownload from "./../../components/copyDownload";
+import CopyDownload from "./../../../components/copyDownload";
 
 export default function DclTclBuilder() {
   const [type, setType] = useState("GRANT");
