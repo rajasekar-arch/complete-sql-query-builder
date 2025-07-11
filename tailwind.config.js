@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}", // Adjust the path to your components and pages
-    "./components/**/*.{js,ts,jsx,tsx}", // Include components directory if you
+    "./src/**/**/*.{js,ts,jsx,tsx}", // Adjust the path to your components and pages
   ],
   theme: {
     extend: {},
