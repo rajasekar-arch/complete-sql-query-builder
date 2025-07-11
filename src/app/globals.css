@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import 'reactflow/dist/style.css';
-@import 'reactflow/dist/theme.css';
+/* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --background: #ffffff;
