@@ -2,8 +2,8 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
-  basePath: '',
-  assetPrefix: '',
+  basePath: '/complete-sql-query-builder',
+  assetPrefix: '/complete-sql-query-builder/',
 };
 
 module.exports = nextConfig;
