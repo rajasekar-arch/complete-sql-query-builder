@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import CopyDownload from './../../../components/copyDownload';
+import CopyDownload from '../../components/copyDownload';
 
 // Step 1: Define valid function types
 type SqlFunction =
