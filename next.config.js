@@ -2,7 +2,7 @@
 const nextConfig = {
   output: 'export',
   reactStrictMode: true,
-  basePath: '/complete-sql-query-builder',
+  basePath: '',
   assetPrefix: '',
 };
 
