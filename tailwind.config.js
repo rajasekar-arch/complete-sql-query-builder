@@ -1,8 +1,8 @@
 // tailwind.config.js
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}", // Adjust the path to your components and pages
-    "./src/**/**/*.{js,ts,jsx,tsx}", // Adjust the path to your components and pages
+    "./src/components/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {},
