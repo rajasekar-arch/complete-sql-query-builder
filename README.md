@@ -74,4 +74,5 @@ To run locally, you would typically:
 * **Schema Integration:** Potentially allow users to define a simple schema to provide more intelligent suggestions and validation.  
 * **Backend Integration:** For a production-ready tool, integrate with a backend service to execute queries against a real database (with appropriate security measures).
 
-
+# DEMO
+[Demo Link for SQL builder](https://rajasekar-arch.github.io/sql-builder-ui)
